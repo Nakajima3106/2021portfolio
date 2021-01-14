@@ -1,0 +1,9 @@
+<% @post.each do |post| %>
+<div>
+  <p>投稿画像<%= attachment_image_tag post, :image, format: 'jpeg' %></p>
+  <p>説明：<%= post.explanation %></p>
+  <p>感想文：<%= post.impressions %></p>
+  <%= link_to "詳細", post_path(post.id) %>
+  <p><%= link_to "#{post.comments.count} コメント", post_path(post.id) %></p>
+</div>
+<% end %>
