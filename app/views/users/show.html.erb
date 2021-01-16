@@ -1,2 +1,20 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="profile-container">
+  <h3 class="profile-name"><%= @user.name %></h3>
+  <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+  <%= @user.self_introduction %>
+  <% if @user.id == current_user.id %>
+    <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
+  <% end %>
+</div>
+
+<% @post.each do |post| %>
+<div>
+  <p>投稿ユーザー画像：<%= attachment_image_tag post.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %></p>
+  <p>投稿画像<%= attachment_image_tag post, :image, :fill, 300, 300, format: 'jpeg', size:'200×200' %></p>
+  <p>説明：<%= post.explanation %></p>
+  <p>感想文：<%= post.impressions %></p>
+  <%= link_to "詳細", post_path(post.id) %>
+  <p><%= link_to "#{post.comments.count} コメント", post_path(post.id) %></p>
+</div>
+<% end %>
+<%= paginate @post %>

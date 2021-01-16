@@ -1,10 +1,16 @@
 <h1>投稿フォーム</h1>
+<% if @post.errors.any? %>
+  <%= @post.errors.count %>件の情報が未入力です
+  <% @post.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
 <%= form_with model: @post, local:true do |f| %>
   <h4>画像</h4>
   <%= f.file_field :image %>
   <h4>説明文</h4>
-  <%= f.text_field :explanation %>
+  <%= f.text_area :explanation, rows:'5',placeholder: "お酒の種類や名前,どこで飲んでいるのか,誰と飲んでいるのか,などなど"%>
   <h4>感想文</h4>
-  <%= f.text_area :impressions %>
+  <%= f.text_area :impressions, rows:'5' %>
   <%= f.submit '投稿' %>
 <% end %>

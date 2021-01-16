@@ -1,6 +1,7 @@
 <% @post.each do |post| %>
 <div>
-  <p>投稿画像<%= attachment_image_tag post, :image, format: 'jpeg', size:'200×200' %></p>
+  <p><%= attachment_image_tag post.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %></p>
+  <p>投稿画像<%= attachment_image_tag post, :image, :fill, 300, 300, format: 'jpeg' %></p>
   <p>説明：<%= post.explanation %></p>
   <p>感想文：<%= post.impressions %></p>
   <%= link_to "詳細", post_path(post.id) %>
