@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   end
 
   def index
+    @user = User.all
   end
 
   def edit
@@ -15,6 +16,17 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.update(user_params)
     redirect_to user_path(@user.id)
+  end
+
+  def unsubscribe
+    @user = User.find_by(name: params[:name])
+  end
+
+  def withdraw
+    @user = current_user
+    @user.update(is_deleted: true)
+    reset_session
+    redirect_to root_path
   end
 
   private
