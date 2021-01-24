@@ -9,6 +9,8 @@ class Post < ApplicationRecord
   validates :explanation, presence: true
   validates :impressions, presence: true
 
+
+
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?
   end

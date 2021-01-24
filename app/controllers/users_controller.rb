@@ -5,7 +5,8 @@ class UsersController < ApplicationController
   end
 
   def index
-    @user = User.all
+    @user = User.where.not(id: current_user.id)
+   
   end
 
   def edit

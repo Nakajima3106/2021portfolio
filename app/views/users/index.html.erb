@@ -1,9 +1,12 @@
-<h1>Al users</h1>
+<h1 class = "title">ユーザー一覧</h1>
+
+
 
 <ul class="users">
   <% @user.each do |user| %>
+  <p>名前：<%= user.name %></p>
       <%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
-      <p>名前：<%= user.name %></p>
+
       <% if current_user.following?(user) %>
         <%= link_to 'フォロー外す', unfollow_path(user.id), method: :POST %>
       <% else %>

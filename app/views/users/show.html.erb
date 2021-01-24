@@ -1,4 +1,6 @@
-<div class="profile-container">
+<h1 class = "title">マイページ</h1>
+
+<div class="post-body">
   <h3 class="profile-name"><%= @user.name %></h3>
   <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
   <p><%= "フォロー数: #{@user.follower.count}" %> <%= "フォロワー数: #{@user.followed.count}" %></p>
@@ -30,7 +32,7 @@
 <h3>フォロー一覧</h3>
   <% @user.following_user.each do |user| %>
     <p>
-      <%= "profile_image: #{user.profile_image} id: #{user.id} email: #{user.email}" %>
+      <%= attachment_image_tag user, :profile_image, size: "60x60", fallback: "no_image.jpg" %>
       <% if current_user.following?(user) %>
         <%= link_to 'フォロー外す', unfollow_path(user.id), method: :POST %>
       <% else %>
@@ -42,7 +44,7 @@
 <h3>フォロワー一覧</h3>
   <% @user.follower_user.each do |user| %>
     <p>
-      <%= "profile_image: #{user.profile_image} id: #{user.id} email: #{user.email}" %>
+      <%= attachment_image_tag user, :profile_image, size: "60x60", fallback: "no_image.jpg" %>
       <% if current_user.following?(user) %>
         <%= link_to 'フォロー外す', unfollow_path(user.id), method: :POST %>
       <% else %>

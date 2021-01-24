@@ -1,37 +1,65 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Sakenomi</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+ <title>Sakenomi</title>
+ <%= csrf_meta_tags %>
+ <%= csp_meta_tag %>
+ <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+ <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+ <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+</head>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+<body>
+ <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+ <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+ </button>
+  <!-- ロゴ -->
 
-  <body>
+　<%= link_to "sakenomi", root_path, class:"header-title" %>
+  <%= link_to  root_path do%>
+  <%= image_tag "sakenomi.logo.png", :class => "header-size" %>
+  <% end %>
+   <ul class = "lists-right">
     <% if user_signed_in? %>
-    　<li>
-        <%= link_to '投稿フォーム', new_post_path %>
-      </li>
-      <li>
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-      </li>
-      <li>
-      <%= link_to 'マイページ', user_path(current_user.id) %>
-      </li>
-      <li>
-      <%= link_to '投稿一覧ページ', posts_path %>
-      </li>
-      <li><%= link_to "ユーザー一覧ページ", users_path %></li>
+    　<li><%= link_to '投稿フォーム', new_post_path, class:"header-btn" %></li>
+      <li><%= link_to '投稿一覧', posts_path, class:"header-btn" %></li>
+      <li><%= link_to 'マイページ', user_path(current_user.id), class:"header-btn" %></li>
+      <li><%= link_to "ユーザー一覧", users_path, class:"header-btn" %></li>
+      <li><%= link_to "ログアウト", destroy_user_session_path, class:"header-btn", method: :delete %></li>
+
     <% else %>
-      <li>
-        <%= link_to "新規登録", new_user_registration_path %>
-      </li>
-      <li>
-        <%= link_to "ログイン", new_user_session_path %>
-      </li>
+   　　<li><%= link_to '投稿一覧', posts_path, class:"header-btn" %></li>
+      <li><%= link_to "新規登録", new_user_registration_path, class:"header-btn" %></li>
+      <li><%= link_to "ログイン", new_user_session_path, class:"header-btn" %></li>
+
     <% end %>
+   </ul>
+   </nav>
+
+
+
+  <div class="col-xs-6 col-xs-offset-3 text-center" style="margin-top: 25px;">
+    <% if user_signed_in? %>
+      <%= form_with url:search_path, method: :get, local: true do |f| %>
+        <%= f.text_field 'search[value]' %>
+        <%= f.select 'search[model]', options_for_select({ "User" => "user", "Post" => "post" }) %>
+        <%= f.select 'search[how]', options_for_select({ "完全一致" => "match", "前方一致" => "forward", "後方一致" => "backward", "部分一致" => "partical"  }) %>
+        <%= f.submit :"検索" %>
+      <% end %>
+    <% end %>
+  </div>
+   <div class = "container">
     <%= yield %>
+   </div>
+
   </body>
+  <footer class="navbar navbar-expand-lg navbar-dark bg-dark text-green pt-4 pb-4 ">
+      <div class="container">
+
+            <p class ="footer-font">酒好きが集うSNS</p>
+      </div>
+    </footer>
 </html>

@@ -1,0 +1,86 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ @import "bootstrap";
+ @import 'font-awesome-sprockets';
+ @import 'font-awesome';
+ @import url('https://fonts.googleapis.com/css2?family=Potta+One&display=swap');
+
+.c{
+  height: 500px;
+  width :100%;
+}
+
+body {
+  background: #1f4037;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #99f2c8, #1f4037);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #99f2c8, #1f4037); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.header-top-content{
+width: 100vw;
+display: flex;
+align-items: center;
+justify-content: space-between;
+margin: 10px 0 30px 0;
+}
+
+.lists-right {
+display: flex;
+list-style: none;
+margin: 0 30px 0 auto;
+font-family: 'Potta One', cursive;
+}
+
+.header-title {
+font-size: 40px;
+text-decoration: none;
+color:#99f2c8;
+font-family: 'Potta One', cursive;
+}
+
+.title {
+font-size: 40px;
+text-decoration: none;
+color:brack;
+font-family: 'Potta One', cursive;
+}
+
+
+.header-btn {
+text-decoration: none;
+margin-right: 3vw;
+color:#99f2c8;
+}
+
+.footer-font {
+color:#99f2c8;
+font-family: 'Potta One', cursive;
+}
+
+.header-size{
+width: 50px;
+height: 50px;
+}
+
+.signin-login-title{
+font-size: 30px;
+font-family: 'Potta One', cursive;
+}
+
+.post-title{
+font-size: 30px;
+font-family: 'Potta One', cursive;
+}
