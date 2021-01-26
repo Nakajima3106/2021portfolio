@@ -1,40 +1,58 @@
 <h1 class = "title">マイページ</h1>
 
-<div class="post-body">
-  <h3 class="profile-name"><%= @user.name %></h3>
-  <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+ <div class="post-text">
+  <div class="mx-auto" style="width: 500px;" >
+  <%= attachment_image_tag @user, :profile_image, :fill, 300, 300, format: 'jpeg', fallback: "no_image.jpg" %>
+  <h3 class="card-title">名前</h3>
+  <h5 class="profile-name"><%= @user.name %></h3>
+  <h3 class="card-title">自己紹介</h3>
+  <h5 class="profile-name"><%= @user.self_introduction %></h5>
   <p><%= "フォロー数: #{@user.follower.count}" %> <%= "フォロワー数: #{@user.followed.count}" %></p>
-  <%= @user.self_introduction %>
   <% if @user.id == current_user.id %>
-    <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
+  <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
   <% end %>
   <% unless @user == current_user %>
   <% if current_user.following?(@user) %>
-    <%= link_to 'フォロー外す', unfollow_path(@user.id), method: :POST %>
+    <%= link_to 'フォローを外す', unfollow_path(@user.id), method: :POST %>
   <% else %>
     <%= link_to 'フォローする', follow_path(@user.id), method: :POST %>
   <% end %>
   <% end %>
-</div>
 
 <% @post.each do |post| %>
-<div>
-  <p>投稿ユーザー画像：<%= attachment_image_tag post.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %></p>
-  <p>投稿画像<%= attachment_image_tag post, :image, :fill, 300, 300, format: 'jpeg', size:'200×200' %></p>
-  <p>説明：<%= post.explanation %></p>
-  <p>感想文：<%= post.impressions %></p>
-  <%= link_to "詳細", post_path(post.id) %>
-  <p><%= link_to "#{post.comments.count} コメント", post_path(post.id) %></p>
-</div>
+ <div class="card" style="width: 400px;">
+  <%= attachment_image_tag post, :image, :fill, 300, 300, format: 'jpeg' %>
+   <div class="card-body">
+    <%= attachment_image_tag post.user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg" %>
+    <%= post.user.name %>
+    <h5 class="card-title"><説明></h3>
+	  <h3 class="card-subtitle"><%= post.explanation %></h3>
+	  <h5 class="card-title"><感想></h3>
+	  <h4 class="card-subtitle"><%= post.impressions %></h3>
+	  <h5 class="card-title"><投稿日時></h3>
+    <h4 class="card-subtitle"><%= post.created_at.strftime('%Y/%m/%d') %></h4>
+     <% if post.user == current_user %>
+      <%= link_to "削除", post_path, method: :delete %>
+      <%= link_to "編集", edit_post_path(post) %>
+     <% end %>
+
+    </div>
+  </div><br>
 <% end %>
+
+
+
+
+
 <%= paginate @post %>
 
 <h3>フォロー一覧</h3>
   <% @user.following_user.each do |user| %>
     <p>
       <%= attachment_image_tag user, :profile_image, size: "60x60", fallback: "no_image.jpg" %>
+      <%= @user.name %>
       <% if current_user.following?(user) %>
-        <%= link_to 'フォロー外す', unfollow_path(user.id), method: :POST %>
+        <%= link_to 'フォローを外す', unfollow_path(user.id), method: :POST %>
       <% else %>
         <%= link_to 'フォローする', follow_path(user.id), method: :POST %>
       <% end %>
@@ -45,11 +63,14 @@
   <% @user.follower_user.each do |user| %>
     <p>
       <%= attachment_image_tag user, :profile_image, size: "60x60", fallback: "no_image.jpg" %>
+      <%= @user.name %>
       <% if current_user.following?(user) %>
-        <%= link_to 'フォロー外す', unfollow_path(user.id), method: :POST %>
+        <%= link_to 'フォローを外す', unfollow_path(user.id), method: :POST %>
       <% else %>
         <%= link_to 'フォローする', follow_path(user.id), method: :POST %>
       <% end %>
       <%= link_to "show", user_path(user) %>
     </p>
   <% end %>
+  </div>
+  </div>

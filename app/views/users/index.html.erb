@@ -1,16 +1,26 @@
 <h1 class = "title">ユーザー一覧</h1>
 
 
+<div class="post-text">
+<table class="table">
 
-<ul class="users">
+
+  <tbody>
   <% @user.each do |user| %>
-  <p>名前：<%= user.name %></p>
-      <%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
+ <tr>
 
+  <td><%= user.name %></td>
+
+  <td><%= attachment_image_tag user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg"%></td>
+ <td><%= link_to "show", user_path(user) %></td>
       <% if current_user.following?(user) %>
-        <%= link_to 'フォロー外す', unfollow_path(user.id), method: :POST %>
+        <td><%= link_to 'フォロー外す', unfollow_path(user.id), method: :POST %></td>
       <% else %>
-        <%= link_to 'フォローする', follow_path(user.id), method: :POST %>
+        <td><%= link_to 'フォローする', follow_path(user.id), method: :POST %></td>
       <% end %>
+      </tr>
+  </tbody>
+
   <% end %>
-</ul>
+    </table>
+    </div>

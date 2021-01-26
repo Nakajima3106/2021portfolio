@@ -1,3 +1,4 @@
+<div class="post-text">
 <h1 class = "title">投稿一覧</h1>
 <% @post.each do |post| %>
 <div class="mx-auto" style="width: 500px;" >
@@ -8,18 +9,22 @@
 
 	<%= attachment_image_tag post, :image, :fill, 300, 300, format: 'jpeg' %>
 	<div class="card-body">
-	<%= post.user.name %>
 	<%= attachment_image_tag post.user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg" %>
-	  <h5 class="card-title">説明</h3>
+		<%= post.user.name %>
+	  <h5 class="card-title"><説明></h3>
 		<h3 class="card-subtitle"><%= post.explanation %></h3>
-		 <h5 class="card-title">感想</h3>
+		 <h5 class="card-title"><感想></h3>
 		<h4 class="card-subtitle"><%= post.impressions %></h3>
 		<% if user_signed_in? %>
 		<a href="#" class="card-link"><%= link_to "詳細", post_path(post.id) %></a>
 		<a href="#" class="card-link"><%= link_to "#{post.comments.count} コメント", post_path(post.id) %></a>
+		<div id="favorite_<%= post.id %>">
+      <%= render "favorites/favorite", post: post %>
+     </div>
 		<% end %>
 	</div>
 </div>
 </div>
 <% end %>
 <%= paginate @post %>
+</div>

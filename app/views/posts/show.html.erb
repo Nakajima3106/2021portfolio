@@ -1,15 +1,16 @@
+<div class="post-text">
 <h1 class = "title">詳細ページ</h1>
 <div class="mx-auto" style="width: 500px;" >
  <div class="card" style="width: 400px;">
   <%= attachment_image_tag @post, :image, :fill, 300, 300, format: 'jpeg' %>
    <div class="card-body">
-    <%= @post.user.name %>
     <%= attachment_image_tag @post.user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg" %>
-    <h5 class="card-title">説明</h3>
+    <%= @post.user.name %>
+    <h5 class="card-title"><説明></h3>
 	  <h3 class="card-subtitle"><%= @post.explanation %></h3>
-	  <h5 class="card-title">感想</h3>
+	  <h5 class="card-title"><感想></h3>
 	  <h4 class="card-subtitle"><%= @post.impressions %></h3>
-	  <h5 class="card-title">投稿日時</h3>
+	  <h5 class="card-title"><投稿日時></h3>
     <h4 class="card-subtitle"><%= @post.created_at.strftime('%Y/%m/%d') %></h4>
      <% if @post.user == current_user %>
       <%= link_to "削除", post_path, method: :delete %>
@@ -20,11 +21,20 @@
      <div id="favorite_<%= @post.id %>">
       <%= render "favorites/favorite", post: @post %>
      </div>
+<p>コメント件数：<%= @post.comments.count %></p>
 
-     <div class="comments">
-      <p>コメント件数：<%= @post.comments.count %></p>
+   </div>
+
+
+  </div><br>
+   <div class="card" style="width: 400px;">
+
+
       <% @post.comments.each do |post_comment| %>
+      <div class="card-body">
+      <%= attachment_image_tag post_comment.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
       <%= post_comment.user.name %>
+      </div>
       <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
       <% if post_comment.user == current_user %>
 
@@ -33,22 +43,18 @@
        </div>
       <% end %>
      <% end %>
-    </div>
-   </div>
-
-
-  </div>
-
-</div>
-<% if user_signed_in? %>
+     <% if user_signed_in? %>
     <div class="new-comment">
      <%= form_with(model:[@post, @comment], local: true) do |f| %>
       <%= f.text_area :comment, class: 'form-control', rows:'5',placeholder: "コメントをここに" %>
-      <%= f.submit "送信する" %>
+      <%= f.submit "送信する", class: 'form-control' %>
    <% end %>
+    </div>
+</div>
+
 </div>
 
 <% else %>
 <%= link_to "ログインはこちら", new_user_session_path %>
 <% end %>
-
+</div>

@@ -1,11 +1,20 @@
-<h1>編集画面</h1>
+<h1 class = "title">編集ページ</h1><br>
 <!-- form_with部分 -->
+<div class="post-text">
 <%= form_with model:@post, local: true do |f| %>
-  <h4>画像</h4>
+ <div class="form-group">
+  <label class ="post-title">画像</label>
   <%= f.file_field :image %>
-  <h4>説明文</h4>
-  <%= f.text_area :explanation, rows:'5',placeholder: "お酒の種類や名前,どこで飲んでいるのか,誰と飲んでいるのか,などなど"%>
-  <h4>感想文</h4>
-  <%= f.text_area :impressions, rows:'5' %>
-  <%= f.submit '保存' %>
+  </div>
+   <div class="form-group">
+  <label class ="post-title">説明文</label>
+  <%= f.text_area :explanation, class: 'form-control', rows:'5',placeholder: "お酒の種類や名前,どこで飲んでいるのか,誰と飲んでいるのか,などなど"%>
+  </div>
+   <div class="form-group">
+  <label class ="post-title">感想文</label>
+  <%= f.text_area :impressions, class: 'form-control', rows:'5' %>
+  </div>
+  <%= f.submit '保存', class:'btn btn-outline-info' %>
 <% end %>
+</div>
+</div>
