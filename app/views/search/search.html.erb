@@ -1,32 +1,36 @@
 <div class="container">
+<div class="post-text">
   <div class="col-xs-12">
-    <% if @model == "user" %>
-    <h2>Users search for '<%= @value %>'</h2>
+
+    <h2>'<%= @value %>'の検索結果</h2>
     <table class="table">
-        <thead>
-            <tr>
-                <th></th>
-                <th>Name</th>
-                <th>Introduction</th>
-            </tr>
-        </thead>
+
     <% @datas.each do |user| %>
         <tbody>
             <tr>
                 <th>
-                    <%= attachment_image_tag(user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg", size:'40x40') %>
+                <%= user.name %>
                 </th>
                 <th>
-                    <%= user.name %>
+                    <%= attachment_image_tag(user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg", size:'100x100') %>
                 </th>
                 <th>
                     <%= user.self_introduction %>
                 </th>
+                <td>
+                　<%= link_to "詳細", user_path(user) %>
+                </td>
+                 <% if current_user.following?(user) %>
+                <td><%= link_to 'フォロー外す', unfollow_path(user.id), method: :POST %></td>
+                <% else %>
+                <td><%= link_to 'フォローする', follow_path(user.id), method: :POST %></td>
+      <% end %>
             </tr>
         </tbody>
     <% end %>
 
-    <% end %>
+
     </table>
   </div>
+</div>
 </div>

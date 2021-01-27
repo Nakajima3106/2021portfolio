@@ -73,3 +73,4 @@ gem 'font-awesome-sass', '~> 5.13'
 group :production do
   gem 'mysql2'
 end
+gem 'rails-i18n'

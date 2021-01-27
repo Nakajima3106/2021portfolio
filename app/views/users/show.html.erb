@@ -50,7 +50,7 @@
   <% @user.following_user.each do |user| %>
     <p>
       <%= attachment_image_tag user, :profile_image, size: "60x60", fallback: "no_image.jpg" %>
-      <%= @user.name %>
+      <%= user.name %>
       <% if current_user.following?(user) %>
         <%= link_to 'フォローを外す', unfollow_path(user.id), method: :POST %>
       <% else %>
@@ -63,7 +63,7 @@
   <% @user.follower_user.each do |user| %>
     <p>
       <%= attachment_image_tag user, :profile_image, size: "60x60", fallback: "no_image.jpg" %>
-      <%= @user.name %>
+      <%= user.name %>
       <% if current_user.following?(user) %>
         <%= link_to 'フォローを外す', unfollow_path(user.id), method: :POST %>
       <% else %>

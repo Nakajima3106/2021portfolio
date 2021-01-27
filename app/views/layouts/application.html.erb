@@ -40,17 +40,18 @@
    </nav>
 
 
-
+<div class="post-text">
   <div class="col-xs-6 col-xs-offset-3 text-center" style="margin-top: 25px;">
     <% if user_signed_in? %>
+
       <%= form_with url:search_path, method: :get, local: true do |f| %>
+       <h3>ユーザー検索</h3>
         <%= f.text_field 'search[value]' %>
-        <%= f.select 'search[model]', options_for_select({ "User" => "user", "Post" => "post" }) %>
-        <%= f.select 'search[how]', options_for_select({ "完全一致" => "match", "前方一致" => "forward", "後方一致" => "backward", "部分一致" => "partical"  }) %>
         <%= f.submit :"検索" %>
       <% end %>
     <% end %>
   </div>
+     </div>
    <div class = "container">
     <%= yield %>
    </div>

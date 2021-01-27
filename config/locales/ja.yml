@@ -1,0 +1,6 @@
+ja:
+    attributes:
+      user:
+        name: 名前
+        e-mail: メールアドレス
+        encrypted_password: パスワード
