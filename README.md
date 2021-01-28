@@ -22,7 +22,7 @@
 
 ## 設計書
 
-
+https://docs.google.com/spreadsheets/d/10DqKlRwoK9Eat1HGj4h1CpZVYy7wpROIoa-WsXnabJ4/edit#gid=0
 
 ## 機能一覧
 
