@@ -5,15 +5,15 @@
  <div class="form-group">
   <label class ="post-title">画像</label>
   <%= f.file_field :image %>
-  </div>
-   <div class="form-group">
+ </div>
+ <div class="form-group">
   <label class ="post-title">説明文</label>
   <%= f.text_area :explanation, class: 'form-control', rows:'5',placeholder: "お酒の種類や名前,どこで飲んでいるのか,誰と飲んでいるのか,などなど"%>
-  </div>
-   <div class="form-group">
+ </div>
+ <div class="form-group">
   <label class ="post-title">感想文</label>
   <%= f.text_area :impressions, class: 'form-control', rows:'5' %>
-  </div>
+ </div>
   <%= f.submit '保存', class:'btn btn-outline-info' %>
 <% end %>
 </div>

@@ -1,26 +1,19 @@
 <h1 class = "title">ユーザー一覧</h1>
-
-
-<div class="post-text">
-<table class="table">
-
-
-  <tbody>
-  <% @user.each do |user| %>
- <tr>
-
-  <td><%= user.name %></td>
-
-  <td><%= attachment_image_tag user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg"%></td>
- <td><%= link_to "詳細", user_path(user) %></td>
-      <% if current_user.following?(user) %>
-        <td><%= link_to 'フォロー外す', unfollow_path(user.id), method: :POST %></td>
-      <% else %>
-        <td><%= link_to 'フォローする', follow_path(user.id), method: :POST %></td>
-      <% end %>
-      </tr>
-  </tbody>
-
-  <% end %>
-    </table>
-    </div>
+ <div class="post-text">
+  <table class="table">
+   <tbody>
+    <% @user.each do |user| %>
+     <tr>
+      <td><%= user.name %></td>
+      <td><%= attachment_image_tag user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg"%></td>
+      <td><%= link_to "詳細", user_path(user) %></td>
+     <% if current_user.following?(user) %>
+      <td><%= link_to 'フォロー外す', unfollow_path(user.id), method: :POST %></td>
+     <% else %>
+      <td><%= link_to 'フォローする', follow_path(user.id), method: :POST %></td>
+     <% end %>
+     </tr>
+   </tbody>
+   <% end %>
+  </table>
+ </div>

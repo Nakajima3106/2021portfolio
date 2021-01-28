@@ -1,15 +1,14 @@
-<div class="mx-auto" style="width: 500px;">
-
-<br><br><br><br><br><br><br><br><div class="post-text">
-<div>
-  <h2>本当に退会しますか？</h2>
+<div class="mx-auto" style="width: 500px;"><br><br><br><br><br><br><br><br>
+ <div class="post-text">
   <div>
-    <p>退会する場合は、『退会する』をクリックしてください。</p>
+   <h2>本当に退会しますか？</h2>
+    <div>
+     <p>退会する場合は、『退会する』をクリックしてください。</p>
+    </div>
+     <div>
+      <%= link_to '退会しない', :back,class:'btn btn-info' %>
+      <%= link_to "退会する", withdraw_path(@user), method: :patch,class:'btn btn-danger' %>
+     </div>
+   </div>
   </div>
-  <div>
-    <%= link_to '退会しない', :back,class:'btn btn-info' %>
-    <%= link_to "退会する", withdraw_path(@user), method: :patch,class:'btn btn-danger' %>
-  </div><br><br><br><br><br><br><br><br><br><br>
-</div>
-</div>
-</div>
+ </div><br><br><br><br><br><br><br><br><br><br>

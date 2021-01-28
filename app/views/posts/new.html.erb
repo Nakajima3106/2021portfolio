@@ -1,23 +1,22 @@
 <h1 class = "title">投稿フォーム</h1><br>
 <% if @post.errors.any? %>
-  <%= @post.errors.count %>件の情報が未入力です
+ <%= @post.errors.count %>件の情報が未入力です
   <% @post.errors.full_messages.each do |message| %>
-    <%= message %>
-  <% end %>
+  <%= message %>
+ <% end %>
 <% end %>
 <%= form_with model: @post, local:true do |f| %>
  <div class="form-group">
   <label class ="post-title">画像</label>
   <%= f.file_field :image %>
-  </div><br>
-  <div class="form-group">
+ </div><br>
+ <div class="form-group">
   <label class ="post-title">説明文</label>
   <%= f.text_area :explanation, class: 'form-control', rows:5 ,placeholder: "お酒の種類や名前,どこで飲んでいるのか,誰と飲んでいるのか,などなど"%>
-  </div><br>
-   <div class="form-group">
+ </div><br>
+ <div class="form-group">
   <label class ="post-title">感想文</label>
   <%= f.text_area :impressions, class: 'form-control', rows:10  %>
-  </div><br>
-
-    <label class ="post-title"><%= f.submit '投稿', class:'btn btn-outline-info' %></label>
+ </div><br>
+ <label class ="post-title"><%= f.submit '投稿', class:'btn btn-outline-info' %></label>
 <% end %>

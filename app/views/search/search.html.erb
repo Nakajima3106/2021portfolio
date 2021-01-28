@@ -1,36 +1,36 @@
 <div class="container">
-<div class="post-text">
+ <div class="post-text">
   <div class="col-xs-12">
-
     <h2>'<%= @value %>'の検索結果</h2>
-    <table class="table">
-
-    <% @datas.each do |user| %>
-        <tbody>
-            <tr>
-                <th>
-                <%= user.name %>
-                </th>
-                <th>
-                    <%= attachment_image_tag(user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg", size:'100x100') %>
-                </th>
-                <th>
-                    <%= user.self_introduction %>
-                </th>
-                <td>
-                　<%= link_to "詳細", user_path(user) %>
-                </td>
-                 <% if current_user.following?(user) %>
-                <td><%= link_to 'フォロー外す', unfollow_path(user.id), method: :POST %></td>
-                <% else %>
-                <td><%= link_to 'フォローする', follow_path(user.id), method: :POST %></td>
+     <table class="table">
+      <% @datas.each do |user| %>
+      <tbody>
+       <tr>
+        <th>
+         <%= user.name %>
+        </th>
+        <th>
+         <%= attachment_image_tag(user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg", size:'100x100') %>
+        </th>
+        <th>
+         <%= user.self_introduction %>
+        </th>
+        <td>
+         <%= link_to "詳細", user_path(user) %>
+        </td>
+         <% if current_user.following?(user) %>
+        <td>
+         <%= link_to 'フォロー外す', unfollow_path(user.id), method: :POST %>
+        </td>
+         <% else %>
+        <td>
+         <%= link_to 'フォローする', follow_path(user.id), method: :POST %>
+        </td>
+         <% end %>
+       </tr>
+      </tbody>
       <% end %>
-            </tr>
-        </tbody>
-    <% end %>
-
-
-    </table>
+     </table>
   </div>
-</div>
+ </div>
 </div>
