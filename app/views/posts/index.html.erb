@@ -4,9 +4,16 @@
   <div class="mx-auto" style="width: 500px;" >
    <div class="card" style="width: 400px;">
    <%= attachment_image_tag post, :image, :fill, 300, 300, format: 'jpeg' %>
+   <p>
+		  <% post.tags.each do |tag| %>
+       <span class="label"><%= tag.name %></span>
+      <% end %>
+     </p>
 	  <div class="card-body">
 	  <%= attachment_image_tag post.user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg" %>
+
 		<%= post.user.name %>
+
 	   <h5 class="card-title"><説明></h3>
 		 <h3 class="card-subtitle"><%= post.explanation %></h3>
 		 <h5 class="card-title"><感想></h3>
