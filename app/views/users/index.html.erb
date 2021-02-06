@@ -6,9 +6,6 @@
      <tr>
       <td><%= user.name %></td>
       <td><%= attachment_image_tag user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg"%></td>
-      <% @post.tags.each do |tag| %>
-       <span class="label"><%= tag.name %></span>
-      <% end %>
       <td><%= link_to "詳細", user_path(user) %></td>
      <% if current_user.following?(user) %>
       <td><%= link_to 'フォロー外す', unfollow_path(user.id), method: :POST %></td>
